@@ -1,0 +1,63 @@
+<!DOCTYPE html>
+<html>
+<head>
+	<title>Calculator</title>
+	<script> 
+		function calculate(){
+			var input = document.calculator.input.value;
+			var equation = new Array(input);
+			equation = equation.join();
+            var operators = new Array("+","-","*","/","%");
+            console.log(operators);
+            
+            
+            for(i=0; i<equation.length;i++){
+                var inputOperator = equation[i];
+                console.log(inputOperator);
+                for(j=0; j<operators.length;j++){
+                    if(inputOperator==operators[j]){
+                        var operator = operators[j];
+                        var num1 = "";
+                        var num2 = "";
+                        var result = 0;
+                    for(k=0;k<equation.length;k++){
+                        if(k < equation.indexOf(operator)){
+                            console.log(equation[k]);
+                            num1 += equation[k];
+
+                        }else if(k > equation.indexOf(operator)){
+                            console.log(equation[k]);
+                            num2 += equation[k];
+                        }
+
+                      }
+                    var operators = { /* Function expression stored in a variable example */
+                        "+": function(a,b) {return a + b}, /* This is  a variable operator I have not learned this yet, but it uses a declared variable */
+                        "-": function(a,b) {return a - b}, /* And stores functions within the variable one function for example is the "+": function this */
+                        "*": function(a,b) {return a * b}, /* Has two parameters (a,b) these parameters are used for passing value into */
+                        "/": function(a,b) {return a / b}, /* This function returns a value which is {return a + b} */
+                        "%": function(a,b) {return a % b},
+                    };
+                    console.log(operator);
+                    result = operators[operator](parseInt(num1),parseInt(num2)); /* This is the "+": function(a,b) {return a + b} in action. The values for the parameters (a,b) are num1 for a and num2 for b. The operators variable is assigned and within this variable the function "+" since
+                    operator in return = operators[operator] is dynamically changing it can be "+","-","*","/". This is a dynamic variable operator! */
+                    document.calculator.input.value = result;
+                    console.log(num1);
+                    console.log(num2);
+
+                        }
+                    }
+                
+            }
+            
+		}
+        
+	</script>
+</head>
+<body>
+	<form name=calculator>
+		<input type=text name=input value="" />
+		<input type=button name=btnCalculate value=Calculate onclick="calculate()"/>
+	</form>
+</body>
+</html>
